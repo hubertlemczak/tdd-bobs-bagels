@@ -11,9 +11,10 @@ describe('bobs bagels', () => {
         variant: 'Sesame',
         fillings: ['Cream Cheese', 'Smoked Salmon'],
         quantity: 1,
+        totalPrice: 4.99,
       },
     ];
-    basket.addToBasket('BGSS');
+    basket.addToBasket('BGSS').getBasketTotal();
     const result = basket.getBasket();
     expect(result).toEqual(expected);
   });
@@ -27,9 +28,10 @@ describe('bobs bagels', () => {
         variant: 'Sesame',
         fillings: ['Cream Cheese', 'Smoked Salmon'],
         quantity: 2,
+        totalPrice: 9.98,
       },
     ];
-    basket.addToBasket('BGSS').addToBasket('BGSS');
+    basket.addToBasket('BGSS').addToBasket('BGSS').getBasketTotal();
     const result = basket.getBasket();
     expect(result).toEqual(expected);
   });
@@ -43,9 +45,10 @@ describe('bobs bagels', () => {
         variant: 'Sesame',
         fillings: ['Cream Cheese', 'Smoked Salmon'],
         quantity: 1,
+        totalPrice: 4.99,
       },
     ];
-    basket.addToBasket('BGSS').addToBasket('BGSS').removeFromBasket('BGSS');
+    basket.addToBasket('BGSS').addToBasket('BGSS').removeFromBasket('BGSS').getBasketTotal();
     const result = basket.getBasket();
     expect(result).toEqual(expected);
   });
@@ -58,6 +61,7 @@ describe('bobs bagels', () => {
         name: 'Bagel',
         variant: 'Onion',
         quantity: 1,
+        totalPrice: 0.49,
       },
       {
         sku: 'BGSS',
@@ -66,6 +70,7 @@ describe('bobs bagels', () => {
         variant: 'Sesame',
         fillings: ['Cream Cheese', 'Smoked Salmon'],
         quantity: 2,
+        totalPrice: 9.98,
       },
     ];
     basket
@@ -73,7 +78,8 @@ describe('bobs bagels', () => {
       .addToBasket('BGLP')
       .addToBasket('BGSS')
       .addToBasket('BGSS')
-      .removeFromBasket('BGLP');
+      .removeFromBasket('BGLP')
+      .getBasketTotal();
     const result = basket.getBasket();
     expect(result).toEqual(expected);
   });

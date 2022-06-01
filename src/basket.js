@@ -75,16 +75,25 @@ class Basket {
       if (this.basket[i].sku === 'BGLO' || this.basket[i].sku === 'BGLE') {
         const dealPrice = Math.floor(this.basket[i].quantity / 6) * 2.49;
         const dealRemainder = (this.basket[i].quantity % 6) * this.basket[i].price;
-        total += dealPrice + dealRemainder;
+        this.basket[i].totalPrice = dealPrice + dealRemainder;
       } else if (this.basket[i].sku === 'BGLP') {
         const dealPrice = Math.floor(this.basket[i].quantity / 12) * 3.99;
         const dealRemainder = (this.basket[i].quantity % 12) * this.basket[i].price;
-        total += dealPrice + dealRemainder;
+        this.basket[i].totalPrice = dealPrice + dealRemainder;
       } else {
-        total += this.basket[i].price * this.basket[i].quantity;
+        this.basket[i].totalPrice = this.basket[i].price * this.basket[i].quantity;
       }
+      total += this.basket[i].totalPrice;
     }
     return `£${total.toFixed(2)}`;
+  }
+  getReceipt() {
+    for (let i = 0; i < this.basket.length; i++) {
+      console.log(
+        `${this.basket[i].variant} ${this.basket[i].name} ${this.basket[i].quantity} ${this.basket[i].totalPrice}`
+      );
+    }
+    console.log(`Total: ${this.getBasketTotal()}`);
   }
 }
 // class Manager extends Basket {
@@ -98,11 +107,12 @@ class Basket {
 // }
 
 // const manager = new Manager();
-// const basket = new Basket();
-// basket.addToBasket('BGLO').addToBasket('BGSS').addToBasket('BGSS');
-// // .removeFromBasket('BGLP');
+const basket = new Basket();
+basket.addToBasket('BGLO').addToBasket('BGSS').addToBasket('BGSS').getBasketTotal();
+basket.getReceipt();
+// .removeFromBasket('BGLP');
 // console.log('basket', basket.getBasket());
-// console.log(basket.getBasketTotal());
+// console.log();
 //I'd like to know when my basket is full when I try adding an item beyond my basket capacity. sum quantity
 
 module.exports = { Basket };
