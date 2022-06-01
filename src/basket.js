@@ -1,50 +1,4 @@
-const inventory = [
-  {
-    sku: 'BGLO',
-    price: 0.49,
-    name: 'Bagel',
-    variant: 'Onion',
-  },
-  {
-    sku: 'BGLP',
-    price: 0.39,
-    name: 'Bagel',
-    variant: 'Plain',
-  },
-  {
-    sku: 'BGLE',
-    price: 0.49,
-    name: 'Bagel',
-    variant: 'Everything',
-  },
-  {
-    sku: 'BGLS',
-    price: 0.49,
-    name: 'Bagel',
-    variant: 'Sesame',
-  },
-  {
-    sku: 'COF',
-    price: 0.99,
-    name: 'Coffee',
-    variant: '',
-  },
-  {
-    sku: 'BGSE',
-    price: 2.99,
-    name: 'Bagel Sandwich',
-    variant: 'Everything',
-    fillings: ['Bacon', 'Egg', 'Cheese'],
-  },
-  {
-    sku: 'BGSS',
-    price: 4.99,
-    name: 'Bagel Sandwich',
-    variant: 'Sesame',
-    fillings: ['Cream Cheese', 'Smoked Salmon'],
-  },
-];
-
+const inventory = require('../inventory.json').inventory;
 class Basket {
   constructor() {
     this.basket = [];
@@ -90,7 +44,9 @@ class Basket {
   getReceipt() {
     for (let i = 0; i < this.basket.length; i++) {
       console.log(
-        `${this.basket[i].variant} ${this.basket[i].name} ${this.basket[i].quantity} ${this.basket[i].totalPrice}`
+        `${this.basket[i].variant} ${this.basket[i].name} ${this.basket[i].quantity} ${this.basket[
+          i
+        ].totalPrice.toFixed(2)}`
       );
     }
     console.log(`Total: ${this.getBasketTotal()}`);
