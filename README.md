@@ -1,3 +1,6 @@
+# https://github.com/hubertlemczak/Bobs-Bagels
+# https://hubertlemczak.github.io/Bobs-Bagels/
+
 # Bob's Bagels
 
 ![](./_images/bagels.jpg)
